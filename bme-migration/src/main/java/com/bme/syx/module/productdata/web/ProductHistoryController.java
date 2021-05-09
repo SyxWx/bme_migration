@@ -11,12 +11,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@RestController
+
 @RequestMapping(value = "product_history")
 public class ProductHistoryController {
 
     @Autowired
-    private ProductHistoryService productHistoryService;
+    //private ProductHistoryService productHistoryService;
 
     // http://localhost:8080/migration/product_history/go?startTime=2021-02-19%2019:00:00&endTime=2021-02-21%2023:20:00
     // http://localhost:8080/migration/product_history/go?startTime=2021-02-19%2019:00:00&endTime=2021-02-19%2019:00:10
@@ -27,7 +27,7 @@ public class ProductHistoryController {
             Date startDate = format.parse(startTime);
             Date endDate = format.parse(endTime);
             int customerId = 6;
-            productHistoryService.getProductData(startDate.getTime(), endDate.getTime(),customerId);
+            //productHistoryService.getProductData(startDate.getTime(), endDate.getTime(),customerId);
         } catch (ParseException e) {
             e.printStackTrace();
             return "fail";

@@ -18,7 +18,6 @@ import java.util.Map;
  * Mybatis配置类
  * @author yutyi
  */
-@Configuration
 public class MybatisManyDataSourceConfig {
 
 	@Bean(name = "mysql")
