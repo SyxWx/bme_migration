@@ -1,15 +1,56 @@
 package com.bme.syx.middle;
 
 import littlebee.excel.ExcelImport;
+import net.bytebuddy.dynamic.scaffold.MethodRegistry;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ToMiddleInsertSQL {
 
     @Test
     public void testToMiddleInserSQl() throws  Exception{
+
+        HashMap<Integer,Integer> formatmat = new HashMap<Integer,Integer>() {
+            {
+                put(2,2);
+                put(3,2);
+                put(6,2);
+                put(7,2);
+                put(8,2);
+                put(9,2);
+                put(11,2);
+                put(12,2);
+                put(17,2);
+                put(18,2);
+                put(19,2);
+                put(21,2);
+                put(22,2);
+                put(23,2);
+                put(27,2);
+                put(28,2);
+                put(29,2);
+                put(70,2);
+                put(113,2);
+                put(14,2);
+                put(10,2);
+                put(20,2);
+                put(15,2);
+                put(300,2);
+                put(301,2);
+                put(302,2);
+                put(303,2);
+                put(1,1);
+                put(30,3);
+                put(4,4);
+                put(5,4);
+                put(24,4);
+            }
+        };
 
         List<Middle> list = new ArrayList<>();
         ExcelImport middleExcel = new ExcelImport(Middle.class,1,"D:\\BME\\middle模板.xlsx");
@@ -65,6 +106,13 @@ public class ToMiddleInsertSQL {
             }else{
                 values.append( "0");
             }
+            int format = 0;
+            if(middle.getCategory_id()!= null && !middle.getCategory_id().isEmpty() ){
+                format = formatmat.get(Integer.parseInt(middle.getCategory_id()));
+                System.out.println(format);
+            }
+            values.append(format);
+
             //取值频率 秒  30  60 300  period;
             //数据类型 1 int   2  float 3  bool   4 string format;
             values.append("),");
@@ -72,7 +120,7 @@ public class ToMiddleInsertSQL {
         sql.append("insert data_types ( "
                 + " facility_title,facility_type_id,facility_category,plant_title, "
                 + " process_title,title,category_id, "                                    //type,period,format,
-                + " unit,status,remark,type,period,device_no,node_id, is_opc ) "
+                + " unit,status,remark,type,period,device_no,node_id, is_opc,format ) "
                 + " values "
         );
         sql.append(values);
@@ -80,6 +128,10 @@ public class ToMiddleInsertSQL {
         System.out.println("---------------------新增条数："+list.size() +" 条 -------------------------------------");
         System.out.println(sql);
         System.out.println("----------------------------------------------------------");
+
+
+
+
 
 
         /**
@@ -104,9 +156,12 @@ public class ToMiddleInsertSQL {
 
          -- 更新format
          -- format=2   2:float
+
          UPDATE data_types SET format=2 WHERE
-         (category_id IN (2,3,6,7,8,9,11,12,17,18,19,21,22,23,27,28,29,70,113,14,8,10,20,15,'300','301','302','303'))
+         (category_id IN (2,3,6,7,8,9,11,12,17,18,19,21,22,23,27,28,29,70,113,14,8,10,20,15,300,301,302,303))
          AND format IS NULL and status = 8;
+
+
          -- format=1  1:int
          UPDATE data_types SET format= 1 WHERE category_id=1 AND format IS NULL  and status = 8;
          -- format=3  3:bool（true:1,false:0)，
