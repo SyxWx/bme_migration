@@ -15,54 +15,58 @@ public class EmissionSource {
     private String emission_source_no ;
 
     @ExcelField(sort = 3, required = false)
-    private String emission_source_type ;
+    private String shed_id ;
 
     @ExcelField(sort = 4, required = false)
-    private String branch_factory ;
+    private String emission_source_type ;
 
     @ExcelField(sort = 5, required = false)
-    private String production_line ;
+    private String branch_factory ;
 
     @ExcelField(sort = 6, required = false)
-    private String processes ;
+    private String production_line ;
 
     @ExcelField(sort = 7, required = false)
-    private String process_section ;
+    private String processes ;
 
     @ExcelField(sort = 8, required = false)
-    private String emission_source_name ;
+    private String process_section ;
 
     @ExcelField(sort = 9, required = false)
-    private String materiel ;
+    private String emission_source_name ;
 
     @ExcelField(sort = 10, required = false)
-    private String static_production_name ;
+    private String materiel ;
 
     @ExcelField(sort = 11, required = false)
-    private String static_production_info ;
+    private String static_production_name ;
 
     @ExcelField(sort = 12, required = false)
-    private String close_detail ;
+    private String static_production_info ;
 
     @ExcelField(sort = 13, required = false)
-    private String image_url ;
+    private String close_detail ;
 
     @ExcelField(sort = 14, required = false)
+    private String image_url ;
+
+    @ExcelField(sort = 15, required = false)
     private String organization_type ;
     
-    @ExcelField(sort = 15, required = false)
+    @ExcelField(sort = 16, required = false)
     private String remark ;
 
-    @ExcelField(sort = 16, required = false)
+    @ExcelField(sort = 17, required = false)
     private String production_describe ;
 
-    @ExcelField(sort = 17, required = false)
+    @ExcelField(sort = 18, required = false)
     private String government_describe ;
 
-    @ExcelField(sort = 18, required = false)
+    @ExcelField(sort = 19, required = false)
     private String monitor_describe ;
 
 
 
+    private String import_data;
 
 }

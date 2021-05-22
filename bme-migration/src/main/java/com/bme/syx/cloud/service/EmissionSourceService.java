@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,19 +23,30 @@ public class EmissionSourceService {
     private EmissionSourceMapper emissionSourceMapper;
 
     @Transactional
-    public  String  insertEissionSource() {
+    public  String  insertEissionSource(String customerId) {
 
+        long   starttime =  System.currentTimeMillis();
         List<EmissionSource> list = new ArrayList<>();
+        //ExcelImport middleExcel = null;
         ExcelImport middleExcel = new ExcelImport(EmissionSource.class,1,"E:\\import\\排放源基本信息表.xlsx");
-
+        int sum = 0;
+        String error="维护成功";
         try {
+
             //取到list值
             list=middleExcel.getModelList(EmissionSource.class);
-            String customerId = list.get(0).getCustomer_id();
-            if(!StringUtils.isNotBlank(customerId)){
-                customerId = "9999";
+
+            sum = list.size();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+            String importData = df.format(new Date());// new Date()为获取当前系统时间
+            list.stream().forEach(l-> l.setImport_data(importData));
+
+            List<List<EmissionSource>> listGroup = new ArrayList<List<EmissionSource>>();
+            listGroup  = groupList(list);
+
+            for (List<EmissionSource> sublist : listGroup) {
+                emissionSourceMapper.insertEmissionSource(sublist);
             }
-            emissionSourceMapper.insertEmissionSource(list);
 
             emissionSourceMapper.updateEmissionType(customerId);
 
@@ -47,15 +60,30 @@ public class EmissionSourceService {
 
             emissionSourceMapper.updateEmissionOrganizationY(customerId);
 
-
-
-            System.out.println("111111");
         } catch (Exception e) {
+            sum = 0;
+            error = e.getMessage();
             e.printStackTrace();
         }
-        for (EmissionSource es :  list){
-            System.out.println(es.toString());
+        long   endtime =  System.currentTimeMillis();
+        long time = endtime-starttime;
+        return "本次排放源清单数据结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
+    }
+
+
+    // 拆分 list 1000个一组
+    public static List<List<EmissionSource>> groupList(List<EmissionSource> list) {
+        List<List<EmissionSource>> listGroup = new ArrayList<List<EmissionSource>>();
+        int listSize = list.size();
+        //子集合的长度
+        int toIndex = 1000;
+        for (int i = 0; i < list.size(); i += 1000) {
+            if (i + 1000 > listSize) {
+                toIndex = listSize - i;
+            }
+            List<EmissionSource> newList = list.subList(i, i + toIndex);
+            listGroup.add(newList);
         }
-        return null;
+        return listGroup;
     }
 }

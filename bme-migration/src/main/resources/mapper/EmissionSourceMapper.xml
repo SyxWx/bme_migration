@@ -19,7 +19,8 @@
         `organization_type`,
         `production_describe`,
         `government_describe`,
-        `monitor_describe`
+        `monitor_describe`,
+        `import_data`
         )
         VALUES
         <foreach collection="list" item="i" separator=",">
@@ -39,7 +40,8 @@
             #{i.organization_type},
             #{i.production_describe},
             #{i.government_describe},
-            #{i.monitor_describe}
+            #{i.monitor_describe},
+            #{i.import_data}
             )
         </foreach>
     </insert>

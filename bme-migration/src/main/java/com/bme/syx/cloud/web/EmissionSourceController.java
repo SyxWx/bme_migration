@@ -2,6 +2,7 @@ package com.bme.syx.cloud.web;
 
 
 import com.bme.syx.cloud.service.EmissionSourceService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +20,13 @@ public class EmissionSourceController {
 
 
     @GetMapping("import")
-    public String eissionSourceImport(){
+    public String eissionSourceImport(String customerId){
 
         System.out.println("import");
-
-       String  result =  eissionSourceService.insertEissionSource();
+        if(!StringUtils.isNotBlank(customerId)){
+            customerId = "9999";
+        }
+       String  result =  eissionSourceService.insertEissionSource(customerId);
 
        return result;
     }
