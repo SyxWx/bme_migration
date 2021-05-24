@@ -5,7 +5,6 @@ import com.bme.syx.cloud.dao.EmissionSourceMapper;
 import com.bme.syx.cloud.entity.EmissionSource;
 import com.bme.syx.common.Untils;
 import littlebee.excel.ExcelImport;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +41,6 @@ public class EmissionSourceService {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
             String importData = df.format(new Date());// new Date()为获取当前系统时间
             list.stream().forEach(l-> l.setImport_data(importData));
-
             List<List<EmissionSource>> listGroup = new ArrayList<List<EmissionSource>>();
             listGroup  = u.groupList(list);
 

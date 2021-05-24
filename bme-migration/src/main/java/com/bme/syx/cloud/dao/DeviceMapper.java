@@ -1,7 +1,6 @@
 package com.bme.syx.cloud.dao;
 
 import com.bme.syx.cloud.entity.DeviceInfo;
-import com.bme.syx.cloud.entity.EmissionSource;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

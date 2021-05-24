@@ -15,7 +15,8 @@
         `primary_type_name`,
         `last_type_name`,
         `detail_info`,
-        `import_data`
+        `import_data`,
+        `remark`
         )
         VALUES
         <foreach collection="list" item="i" separator=",">
@@ -31,7 +32,8 @@
             #{i.primary_type_name},
             #{i.last_type_name},
             #{i.detail_info},
-            #{i.import_data}
+            #{i.import_data},
+            #{i.remark}
             )
         </foreach>
     </insert>

@@ -1,29 +1,27 @@
 package com.bme.syx.cloud.web;
 
-
-import com.bme.syx.cloud.service.DeviceInfoService;
+import com.bme.syx.cloud.service.SignalService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//设备表
 @RestController
-@RequestMapping(value = "device")
-public class DeviceInfoController {
+@RequestMapping(value="signal")
+public class SignalController {
 
 
     @Autowired
-    private DeviceInfoService deviceInfoService;
+    private SignalService signalService;
 
 
-    //http://localhost:8080/mig/device/import?customerId=8
+    //http://localhost:8080/mig/signal/import?customerId=8
     @RequestMapping(value="import")
-    public String importDeviceInfo(String customerId){
+    public String importSignal(String customerId){
         if(!StringUtils.isNotBlank(customerId)){
             customerId = "9999";
         }
-        String  result =  deviceInfoService.insertDeviceInfo(customerId);
+        String  result =  signalService.insertSignalInfo(customerId);
         return result;
     }
 }

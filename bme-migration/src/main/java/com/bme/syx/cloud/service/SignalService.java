@@ -1,8 +1,7 @@
 package com.bme.syx.cloud.service;
 
-
-import com.bme.syx.cloud.dao.DeviceMapper;
-import com.bme.syx.cloud.entity.DeviceInfo;
+import com.bme.syx.cloud.dao.SignalMapper;
+import com.bme.syx.cloud.entity.SignalInfo;
 import com.bme.syx.common.Untils;
 import littlebee.excel.ExcelImport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,38 +12,41 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 @Service
-public class DeviceInfoService {
+public class SignalService {
 
     @Autowired
-    private DeviceMapper deviceMapper;
+    private SignalMapper signalMapper;
+
     @Autowired
     private Untils u;
 
-    public String insertDeviceInfo(String customerId){
+    public String insertSignalInfo(String customerId){
 
         long   starttime =  System.currentTimeMillis();
-        List<DeviceInfo> list = new ArrayList<>();
-        ExcelImport deviceExcel = new ExcelImport(DeviceInfo.class,1,"E:\\import\\设备基本信息表.xlsx");
+        List<SignalInfo> list = new ArrayList<>();
+        ExcelImport signalExcel = new ExcelImport(SignalInfo.class,1,"E:\\import\\数据采集信号基本信息表.xlsx");
         int sum = 0;
         String error="维护成功!!!";
         try {
             //取到list值
-            list=deviceExcel.getModelList(DeviceInfo.class);
+            list=signalExcel.getModelList(SignalInfo.class);
             sum = list.size();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
             String importData = df.format(new Date());// new Date()为获取当前系统时间
             list.stream().forEach(l-> l.setImport_data(importData));
-            List<List<DeviceInfo>> listGroup = new ArrayList<List<DeviceInfo>>();
+            List<List<SignalInfo>> listGroup = new ArrayList<List<SignalInfo>>();
             listGroup  = u.groupList(list);
-            for (List<DeviceInfo> sublist : listGroup) {
-                deviceMapper.insertDevice(sublist);
+            for (List<SignalInfo> sublist : listGroup) {
+                signalMapper.insertSignal(sublist);
             }
-            deviceMapper.updateDeviceLine(customerId);
-            deviceMapper.updateDeviceLine(customerId);
-            deviceMapper.updateDevicePType(customerId);
-            deviceMapper.updateDeviceType(customerId);
+
+            signalMapper.updateSignalPeriod30(customerId);
+
+            signalMapper.updateSignalPeriod60(customerId);
+
+            signalMapper.updateSignalPeriod300(customerId);
+
         } catch (Exception e) {
             sum = 0;
             error = e.getMessage();
@@ -52,7 +54,7 @@ public class DeviceInfoService {
         }
         long   endtime =  System.currentTimeMillis();
         long time = endtime-starttime;
-        return "客户ID："+customerId+"：本次设备数据(t_import_device)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
+        return "客户ID："+customerId+"：本次信号数据(t_import_device)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
 
     }
 }
