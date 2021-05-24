@@ -15,7 +15,7 @@ public class EmissionSource {
     private String emission_source_no ;
 
     @ExcelField(sort = 3, required = false)
-    private String shed_id ;
+    private String shed_no ;
 
     @ExcelField(sort = 4, required = false)
     private String emission_source_type ;

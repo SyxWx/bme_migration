@@ -41,7 +41,7 @@ public class DeviceInfoService {
             for (List<DeviceInfo> sublist : listGroup) {
                 deviceMapper.insertDevice(sublist);
             }
-            deviceMapper.updateDeviceLine(customerId);
+            deviceMapper.updateDeviceFactory(customerId);
             deviceMapper.updateDeviceLine(customerId);
             deviceMapper.updateDevicePType(customerId);
             deviceMapper.updateDeviceType(customerId);

@@ -52,12 +52,12 @@
     </update>
 
     <update id="updateDevicePType" parameterType="String">
-        update t_device td set primary_type_id = ( select tt.type_id from  t_device_type tt where  td.primary_type_name =  tt.type_name )
+        update t_import_device td set primary_type_id = ( select tt.type_id from  t_device_type tt where  td.primary_type_name =  tt.type_name )
         where td.customer_id  = #{customerId};
     </update>
 
     <update id="updateDeviceType" parameterType="String">
-        update t_device td set type_id = ( select  tt.type_id from  t_device_type tt where   tt.type_name  = td.last_type_name)
+        update t_import_device td set type_id = ( select  tt.type_id from  t_device_type tt where   tt.type_name  = td.last_type_name)
         where td.customer_id  =  #{customerId};
     </update>
 
