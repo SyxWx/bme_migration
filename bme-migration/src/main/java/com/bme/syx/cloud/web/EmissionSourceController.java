@@ -19,15 +19,14 @@ public class EmissionSourceController {
     private EmissionSourceService eissionSourceService;
 
 
+    //http://localhost:8080/mig/esc/import?customerId=8
     @GetMapping("import")
     public String eissionSourceImport(String customerId){
 
-        System.out.println("import");
         if(!StringUtils.isNotBlank(customerId)){
             customerId = "9999";
         }
        String  result =  eissionSourceService.insertEissionSource(customerId);
-
        return result;
     }
 }

@@ -43,4 +43,5 @@ public class DeviceInfo {
     @ExcelField(sort = 12, required = false)
     private String latitude ;
 
+    private String import_data;
 }

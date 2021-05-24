@@ -3,6 +3,7 @@ package com.bme.syx.cloud.service;
 
 import com.bme.syx.cloud.dao.EmissionSourceMapper;
 import com.bme.syx.cloud.entity.EmissionSource;
+import com.bme.syx.common.Untils;
 import littlebee.excel.ExcelImport;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,14 @@ public class EmissionSourceService {
 
     @Autowired
     private EmissionSourceMapper emissionSourceMapper;
+    @Autowired
+    private Untils u;
 
     @Transactional
     public  String  insertEissionSource(String customerId) {
 
         long   starttime =  System.currentTimeMillis();
         List<EmissionSource> list = new ArrayList<>();
-        //ExcelImport middleExcel = null;
         ExcelImport middleExcel = new ExcelImport(EmissionSource.class,1,"E:\\import\\排放源基本信息表.xlsx");
         int sum = 0;
         String error="维护成功";
@@ -42,7 +44,7 @@ public class EmissionSourceService {
             list.stream().forEach(l-> l.setImport_data(importData));
 
             List<List<EmissionSource>> listGroup = new ArrayList<List<EmissionSource>>();
-            listGroup  = groupList(list);
+            listGroup  = u.groupList(list);
 
             for (List<EmissionSource> sublist : listGroup) {
                 emissionSourceMapper.insertEmissionSource(sublist);
@@ -67,23 +69,7 @@ public class EmissionSourceService {
         }
         long   endtime =  System.currentTimeMillis();
         long time = endtime-starttime;
-        return "本次排放源清单数据结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
+        return "客户ID："+customerId+"：维护排放源清单数据(t_ipmort_emissionSource)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
     }
 
-
-    // 拆分 list 1000个一组
-    public static List<List<EmissionSource>> groupList(List<EmissionSource> list) {
-        List<List<EmissionSource>> listGroup = new ArrayList<List<EmissionSource>>();
-        int listSize = list.size();
-        //子集合的长度
-        int toIndex = 1000;
-        for (int i = 0; i < list.size(); i += 1000) {
-            if (i + 1000 > listSize) {
-                toIndex = listSize - i;
-            }
-            List<EmissionSource> newList = list.subList(i, i + toIndex);
-            listGroup.add(newList);
-        }
-        return listGroup;
-    }
 }
