@@ -39,7 +39,7 @@ public class EmissionSourceService {
 
             sum = list.size();
             ////设置日期格式
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
             //// new Date()为获取当前系统时间
             String importData = df.format(new Date());
             list.stream().forEach(l-> l.setImport_data(importData));
