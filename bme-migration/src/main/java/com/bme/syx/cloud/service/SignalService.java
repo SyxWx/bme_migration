@@ -51,6 +51,8 @@ public class SignalService {
 
             signalMapper.updateSignalPeriod300(customerId);
 
+            signalMapper.updateSignalStandard(customerId);
+
         } catch (Exception e) {
             sum = 0;
             error = e.getMessage();

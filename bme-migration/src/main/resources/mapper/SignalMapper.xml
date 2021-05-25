@@ -53,5 +53,10 @@
         update t_import_signal ts set ts.period = 300
         where (period like '%五分钟%'  or period like '%5分钟%' or period like '%300%')  and ts.customer_id  = #{customerId};
     </update>
+    <update id="updateSignalStandard" parameterType="String">
+        update t_import_signal ts set ts.standard_data = ( select  tt.standard_data from  t_signal_standard_data tt where   tt.signal_no  = ts.signal_no)
+        where ts.customer_id  = #{customerId};
+    </update>
+
 
 </mapper>

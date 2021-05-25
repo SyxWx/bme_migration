@@ -16,4 +16,7 @@ public interface SignalMapper {
 
     void  updateSignalPeriod300(String customerId);
 
+    void  updateSignalStandard(String customerId);
+
+
 }
