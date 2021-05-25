@@ -28,6 +28,24 @@ public class SignalController {
         return result;
     }
 
+    /*
+    *
+
+
+select *    from  t_signal where customer_id  = 8  ;
+
+insert into t_signal
+(signal_no,signal_name,customer_id,unit,category_id,signal_type,
+period,upper_limit,lower_limit,node_id,is_enable,remark,
+device_no,open_range,standard_data)
+select
+signal_no,signal_name,customer_id,unit,category_id,signal_type,
+period,upper_limit,lower_limit,node_id,is_enable,remark,
+device_no,open_range,standard_data
+from t_import_signal where customer_id  = 8  and import_data = '2021-05-25 14:34';
+
+     **/
+
     //http://localhost:8080/mig/signal/import?customerId=8
     @RequestMapping(value="fileimport")
     @ResponseBody

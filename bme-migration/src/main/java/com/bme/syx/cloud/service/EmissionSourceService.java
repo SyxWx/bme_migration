@@ -38,8 +38,10 @@ public class EmissionSourceService {
             list=middleExcel.getModelList(EmissionSource.class);
 
             sum = list.size();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
-            String importData = df.format(new Date());// new Date()为获取当前系统时间
+            ////设置日期格式
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            //// new Date()为获取当前系统时间
+            String importData = df.format(new Date());
             list.stream().forEach(l-> l.setImport_data(importData));
             List<List<EmissionSource>> listGroup = new ArrayList<List<EmissionSource>>();
             listGroup  = u.groupList(list);
@@ -67,7 +69,7 @@ public class EmissionSourceService {
         }
         long   endtime =  System.currentTimeMillis();
         long time = endtime-starttime;
-        return "客户ID："+customerId+"：维护排放源清单数据(t_ipmort_emissionSource)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
+        return "客户ID："+customerId+"：维护排放源清单数据(t_import_emission_source)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
     }
 
 }

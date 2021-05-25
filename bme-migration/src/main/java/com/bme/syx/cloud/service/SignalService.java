@@ -34,8 +34,10 @@ public class SignalService {
             //取到list值
             list=signalExcel.getModelList(SignalInfo.class);
             sum = list.size();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
-            String importData = df.format(new Date());// new Date()为获取当前系统时间
+            ////设置日期格式
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            //// new Date()为获取当前系统时间
+            String importData = df.format(new Date());
             list.stream().forEach(l-> l.setImport_data(importData));
             List<List<SignalInfo>> listGroup = new ArrayList<List<SignalInfo>>();
             listGroup  = u.groupList(list);
@@ -56,7 +58,7 @@ public class SignalService {
         }
         long   endtime =  System.currentTimeMillis();
         long time = endtime-starttime;
-        return "客户ID："+customerId+"：本次信号数据(t_import_device)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
+        return "客户ID："+customerId+"：本次信号数据(t_import_signal)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
 
     }
 
