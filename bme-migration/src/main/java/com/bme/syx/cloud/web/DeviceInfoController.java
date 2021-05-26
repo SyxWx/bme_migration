@@ -42,7 +42,7 @@ select
 device_no,device_name,device_alias_name,customer_id,branch_factory_id,branch_factory,
 production_line_id,production_line,processes,process_section,longitude,latitude,primary_type_id,
 primary_type_name,type_id,last_type_name,detail_info,is_enable,remark,gb_tdc,gb_so2,gb_nox
-from t_import_device where customer_id  = 8  and import_data = '2021-05-24 19:00';
+from t_import_device where customer_id  = 38  and import_data = '202105261709';
 
      **/
 }

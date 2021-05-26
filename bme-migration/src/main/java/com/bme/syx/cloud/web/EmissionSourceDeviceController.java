@@ -33,7 +33,7 @@ select *   from  t_emission_source_device where customer_id = 8 ;
 insert into t_emission_source_device
 (emission_source_no,device_name,device_no,customer_id,type_id)
 select emission_source_no,device_name,device_no,customer_id,type_id
-from  t_import_emission_source_device where customer_id  = 8 and import_data = '2021-05-25 16:55';
+from  t_import_emission_source_device where customer_id  = 38 and import_data = '202105261713';
 
      **/
 

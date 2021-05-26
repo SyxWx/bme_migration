@@ -46,7 +46,9 @@ select emission_source_no,emission_source_name,emission_source_id,emission_sourc
 			 static_production_info,is_close,close_detail,materiel,image_url,organization_type,display_name,
 			 is_enable,remark,shed_no,production_describe,government_describe,monitor_describe,isit_airtight
 from t_import_emission_source
-where  customer_id  = 8 and import_data = '2021-05-24 19:42';
+where  customer_id  = 38 and import_data = '202105261654';
+
+*
 *
      **/
 }
