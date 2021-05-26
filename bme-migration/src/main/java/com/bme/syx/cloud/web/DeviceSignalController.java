@@ -27,4 +27,17 @@ public class DeviceSignalController {
         String  result =  deviceSignalService.insertDeviceSignal(customerId);
         return result;
     }
+
+    /*
+    *
+
+select *    from  t_device_signal   where customer_id = 8;
+
+insert into t_device_signal
+(device_no,signal_no,customer_id)
+select device_no,signal_no,customer_id
+from  t_import_device_signal   where customer_id = 8 and import_data = '202105251752';
+
+
+     **/
 }
