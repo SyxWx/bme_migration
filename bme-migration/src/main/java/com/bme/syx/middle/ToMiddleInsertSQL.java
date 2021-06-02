@@ -15,43 +15,6 @@ public class ToMiddleInsertSQL {
     @Test
     public void testToMiddleInserSQl() throws  Exception{
 
-        HashMap<Integer,Integer> formatmat = new HashMap<Integer,Integer>() {
-            {
-                put(2,2);
-                put(3,2);
-                put(6,2);
-                put(7,2);
-                put(8,2);
-                put(9,2);
-                put(11,2);
-                put(12,2);
-                put(17,2);
-                put(18,2);
-                put(19,2);
-                put(21,2);
-                put(22,2);
-                put(23,2);
-                put(27,2);
-                put(28,2);
-                put(29,2);
-                put(70,2);
-                put(113,2);
-                put(14,2);
-                put(10,2);
-                put(20,2);
-                put(15,2);
-                put(300,2);
-                put(301,2);
-                put(302,2);
-                put(303,2);
-                put(1,1);
-                put(30,3);
-                put(4,4);
-                put(5,4);
-                put(24,4);
-            }
-        };
-
         List<Middle> list = new ArrayList<>();
         ExcelImport middleExcel = new ExcelImport(Middle.class,1,"D:\\BME\\middle模板.xlsx");
         list=middleExcel.getModelList(Middle.class);
@@ -106,12 +69,6 @@ public class ToMiddleInsertSQL {
             }else{
                 values.append( "0");
             }
-            int format = 0;
-            if(middle.getCategory_id()!= null && !middle.getCategory_id().isEmpty() ){
-                format = formatmat.get(Integer.parseInt(middle.getCategory_id()));
-                System.out.println(format);
-            }
-            values.append(format);
 
             //取值频率 秒  30  60 300  period;
             //数据类型 1 int   2  float 3  bool   4 string format;
@@ -120,7 +77,7 @@ public class ToMiddleInsertSQL {
         sql.append("insert data_types ( "
                 + " facility_title,facility_type_id,facility_category,plant_title, "
                 + " process_title,title,category_id, "                                    //type,period,format,
-                + " unit,status,remark,type,period,device_no,node_id, is_opc,format ) "
+                + " unit,status,remark,type,period,device_no,node_id, is_opc ) "
                 + " values "
         );
         sql.append(values);
