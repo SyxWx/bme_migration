@@ -17,4 +17,14 @@ public interface DeviceMapper {
     void  updateDevicePType(String customerId);
 
     void  updateDeviceType(String customerId);
+
+
+
+
+    void  updateDeviceGBTdc(String customerId);
+
+    void  updateDeviceGBSo2(String customerId);
+
+    void  updateDeviceGBNox(String customerId);
+
 }

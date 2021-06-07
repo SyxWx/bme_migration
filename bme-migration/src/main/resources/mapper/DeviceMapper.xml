@@ -61,4 +61,19 @@
         where td.customer_id  =  #{customerId};
     </update>
 
+    <update id="updateDeviceGBTdc" parameterType="String">
+        update t_import_device td set td.gb_tdc = ( select  tt.gb_tdc from  t_device_gb tt where   tt.device_no  = td.device_no)
+        where td. customer_id  = #{customerId};
+    </update>
+
+    <update id="updateDeviceGBSo2" parameterType="String">
+        update t_import_device td set td.gb_so2 = ( select  tt.gb_so2 from  t_device_gb tt where   tt.device_no  = td.device_no)
+        where td. customer_id  =#{customerId};
+    </update>
+
+    <update id="updateDeviceGBNox" parameterType="String">
+        update t_import_device td set td.gb_nox = ( select  tt.gb_nox from  t_device_gb tt where   tt.device_no  = td.device_no)
+        where td. customer_id  = #{customerId};
+    </update>
+
 </mapper>

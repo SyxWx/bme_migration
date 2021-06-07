@@ -47,6 +47,9 @@ public class DeviceInfoService {
             deviceMapper.updateDeviceLine(customerId);
             deviceMapper.updateDevicePType(customerId);
             deviceMapper.updateDeviceType(customerId);
+
+
+
         } catch (Exception e) {
             sum = 0;
             error = e.getMessage();
