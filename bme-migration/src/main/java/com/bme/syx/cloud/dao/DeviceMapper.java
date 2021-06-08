@@ -27,4 +27,8 @@ public interface DeviceMapper {
 
     void  updateDeviceGBNox(String customerId);
 
+    void  updateDeviceLongitudeNull(String customerId);
+
+    void  updateDeviceLatitudeNull(String customerId);
+
 }

@@ -51,16 +51,14 @@ public class CarWashService {
                 }else{
                     car.setIs_water_shaking_table("0");
                 }
-                if("是".equals(car.getIs_water_shaking_table())){
-                    car.setIs_water_shaking_table("1");
+                if("是".equals(car.getIs_sewage_treatment())){
+                    car.setIs_sewage_treatment("1");
                 }else{
-                    car.setIs_water_shaking_table("0");
+                    car.setIs_sewage_treatment("0");
                 }
             }
-            for (CarWashInfo car : list) {
-                System.out.println(car.toString());
-            }
-         //   carWashMapper.insertCarWashList(list);
+
+           carWashMapper.insertCarWashList(list);
 
         } catch (Exception e) {
             sum = 0;

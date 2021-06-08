@@ -38,10 +38,10 @@ public class DeviceInfo {
     private String device_alias_name ;
 
     @ExcelField(sort = 11, required = false)
-    private String longitude ;
+    private double longitude ;
 
     @ExcelField(sort = 12, required = false)
-    private String latitude ;
+    private double latitude ;
 
     private String import_data;
 }

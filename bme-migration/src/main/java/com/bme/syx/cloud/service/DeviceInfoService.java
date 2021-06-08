@@ -44,10 +44,22 @@ public class DeviceInfoService {
                 deviceMapper.insertDevice(sublist);
             }
             deviceMapper.updateDeviceFactory(customerId);
+            System.out.println("更新分厂");
             deviceMapper.updateDeviceLine(customerId);
+            System.out.println("更新生产线");
             deviceMapper.updateDevicePType(customerId);
+
             deviceMapper.updateDeviceType(customerId);
 
+            deviceMapper.updateDeviceGBTdc(customerId);
+
+            deviceMapper.updateDeviceGBSo2(customerId);
+
+            deviceMapper.updateDeviceGBNox(customerId);
+
+            deviceMapper.updateDeviceLongitudeNull(customerId);
+
+            deviceMapper.updateDeviceLatitudeNull(customerId);
 
 
         } catch (Exception e) {

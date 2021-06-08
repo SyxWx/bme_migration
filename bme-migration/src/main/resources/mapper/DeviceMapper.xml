@@ -76,4 +76,16 @@
         where td. customer_id  = #{customerId};
     </update>
 
+    <update id="updateDeviceLongitudeNull" parameterType="String">
+        update t_import_device set longitude = null where customer_id  =  #{customerId} and longitude = '0.00000000000000';
+    </update>
+
+    <update id="updateDeviceLatitudeNull" parameterType="String">
+        update t_import_device set latitude = null where customer_id  =  #{customerId} and latitude = '0.00000000000000'
+    </update>
+
+
+
+
+
 </mapper>
