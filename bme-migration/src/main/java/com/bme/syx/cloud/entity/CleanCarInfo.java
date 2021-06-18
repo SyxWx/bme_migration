@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 public class CleanCarInfo {
+
+
     @ExcelField(sort = 1, required = false)
     private String dtu_num ;
 
@@ -17,6 +19,8 @@ public class CleanCarInfo {
     @ExcelField(sort = 4, required = false)
     private String customer_id ;
 
+
+
     @ExcelField(sort = 5, required = false)
     private String type_id ;
 
@@ -28,6 +32,7 @@ public class CleanCarInfo {
 
     @ExcelField(sort = 8, required = false)
     private String remarks ;
+
 
 
     private String import_data;

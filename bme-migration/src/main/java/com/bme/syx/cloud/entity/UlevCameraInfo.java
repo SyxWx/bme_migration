@@ -44,4 +44,6 @@ public class UlevCameraInfo {
 
     private String customer_id;
 
+    private String type;
+
 }

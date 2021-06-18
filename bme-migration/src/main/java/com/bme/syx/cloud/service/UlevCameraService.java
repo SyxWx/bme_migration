@@ -36,6 +36,7 @@ public class UlevCameraService {
             list.stream().forEach(l -> l.setImport_data(importData));
             list.stream().forEach(l -> l.setCustomer_id(customerId));
             list.stream().forEach(l -> l.setStatus("1"));
+            list.stream().forEach(l -> l.setType("1"));
             ulevCameraMapper.insertUlevCamera(list);
 
         } catch (Exception e) {

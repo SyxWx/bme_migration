@@ -16,7 +16,8 @@
         `seq`,
         `status`,
         `import_data`,
-         model
+        `model`,
+        `type`
         )
         VALUES
         <foreach collection="list" item="i" separator=",">
@@ -33,7 +34,8 @@
             #{i.seq},
             #{i.status},
             #{i.import_data},
-            #{i.model}
+            #{i.model},
+            #{i.type}
             )
         </foreach>
     </insert>
