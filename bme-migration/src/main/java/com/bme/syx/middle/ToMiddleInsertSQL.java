@@ -1,13 +1,9 @@
 package com.bme.syx.middle;
 
 import littlebee.excel.ExcelImport;
-import net.bytebuddy.dynamic.scaffold.MethodRegistry;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class ToMiddleInsertSQL {
@@ -52,7 +48,9 @@ public class ToMiddleInsertSQL {
             //状态 1 0 status;
             values.append( "8,");
             // 频率   remark;
-            values.append( middle.getRemark()!= null && !middle.getRemark().isEmpty() ? "'"+middle.getRemark() +"',":"NULL,");
+            values.append( middle.getRemarkss()!= null && !middle.getRemarkss().isEmpty() ? "'"+middle.getRemarkss() +"',":"NULL,");
+
+            //values.append( middle.getRemark()!= null && !middle.getRemark().isEmpty() ? "'"+middle.getRemark() +"',":"NULL,");
             //取值类型  1一次  2最小值  3最大值  4平均值  5累计次数
             type = getTypeByRemark(middle.getRemark());
             values.append( type!=null&&!type.isEmpty()  ? "'"+type +"',":"NULL,");
@@ -69,6 +67,7 @@ public class ToMiddleInsertSQL {
             }else{
                 values.append( "0");
             }
+
 
             //取值频率 秒  30  60 300  period;
             //数据类型 1 int   2  float 3  bool   4 string format;
@@ -115,7 +114,7 @@ public class ToMiddleInsertSQL {
          -- format=2   2:float
 
          UPDATE data_types SET format=2 WHERE
-         (category_id IN (2,3,6,7,8,9,11,12,17,18,19,21,22,23,27,28,29,70,113,14,8,10,20,15,300,301,302,303))
+         (category_id IN (2,3,4,6,7,8,9,11,12,17,18,19,21,22,23,27,28,29,70,113,14,8,10,20,15,300,301,302,303,68,16))
          AND format IS NULL and status = 8;
 
 
@@ -124,11 +123,12 @@ public class ToMiddleInsertSQL {
          -- format=3  3:bool（true:1,false:0)，
          UPDATE data_types SET format=3 WHERE category_id=30 AND format IS NULL  and status = 8;
          -- format=4  4:string
-         UPDATE data_types SET format=4 WHERE category_id IN (4,5,24) AND format IS NULL  and status = 8;
-
+         UPDATE data_types SET format=4 WHERE category_id IN (5,24) AND format IS NULL  and status = 8;
 
 
          UPDATE data_types SET status=1 where  status = 8;
+
+
          *
          */
 
@@ -150,11 +150,11 @@ public class ToMiddleInsertSQL {
         if(remark!=null && !remark.isEmpty()){
             if(remark.indexOf("一次")>-1){
                 return "1";
-            }else if(remark.indexOf("最小值")>-1){
+            }else if(remark.indexOf("最小")>-1){
                 return "2";
-            }else if(remark.indexOf("最大值")>-1){
+            }else if(remark.indexOf("最大")>-1){
                 return "3";
-            }else if(remark.indexOf("平均值")>-1){
+            }else if(remark.indexOf("平均")>-1){
                 return "4";
             }else if(remark.indexOf("累计次数")>-1){
                 return "5";
@@ -168,7 +168,7 @@ public class ToMiddleInsertSQL {
     //返回类型 //取值类型  1一次  2最小值  3最大值  4平均值  5累计次数
     public String getPeriodByRemark(String remark){
         if(remark!=null && !remark.isEmpty()){
-            if(remark.indexOf("30")>-1){
+            if(remark.indexOf("30")>-1   ){
                 return "30";
             }else if(remark.indexOf("一分钟")>-1 || remark.indexOf("1分钟")>-1 || remark.indexOf("60")>-1){
                 return "60";
@@ -184,4 +184,4 @@ public class ToMiddleInsertSQL {
 }
 
 
-
+// insert data_types (  facility_title,facility_type_id,facility_category,plant_title,  process_title,title,category_id,  unit,status,remark,type,period,device_no,node_id, is_opc )  values ('230m2混料塑烧板除尘',NULL,'2','烧结厂','230烧结','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-230SJ-005',NULL,0),('230m2混料塑烧板除尘',NULL,'2','烧结厂','230烧结','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-230SJ-005',NULL,0),('230m2混料塑烧板除尘',NULL,'2','烧结厂','230烧结','电机电流','70','A',8,NULL,'4','300','RC-ZL-230SJ-005',NULL,0),('230m2梭式布料塑烧板除尘',NULL,'2','烧结厂','230烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-230SJ-006',NULL,0),('原1皮带布料车单机除尘',NULL,'2','烧结厂','230烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-230SJ-007',NULL,0),('原2皮带布料车单机除尘',NULL,'2','烧结厂','230烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-230SJ-008',NULL,0),('265m2混料塑烧板除尘',NULL,'2','烧结厂','265烧结','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-265SJ-007',NULL,0),('265m2混料塑烧板除尘',NULL,'2','烧结厂','265烧结','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-265SJ-007',NULL,0),('265m2混料塑烧板除尘',NULL,'2','烧结厂','265烧结','电机电流','70','A',8,NULL,'4','300','RC-ZL-265SJ-007',NULL,0),('265m2梭式布料塑烧板除尘',NULL,'2','烧结厂','265烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-265SJ-008',NULL,0),('265m2机尾、成品除尘',NULL,'2','烧结厂','265烧结','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-265SJ-009',NULL,0),('265m2机尾、成品除尘',NULL,'2','烧结厂','265烧结','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-265SJ-009',NULL,0),('265m2机尾、成品除尘',NULL,'2','烧结厂','265烧结','电机电流','70','A',8,NULL,'4','300','RC-ZL-265SJ-009',NULL,0),('成4皮带布料车单机除尘',NULL,'2','烧结厂','265烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-265SJ-010',NULL,0),('5#高炉喷煤除尘',NULL,'2','炼铁厂','5#高炉','箱体总差压','10','Pa',8,NULL,'4','300','RC-ZL-5#GL-005',NULL,0),('5#高炉喷煤除尘',NULL,'2','炼铁厂','5#高炉','变频频率','6','Hz',8,NULL,'4','300','RC-ZL-5#GL-005',NULL,0),('5#高炉喷煤除尘',NULL,'2','炼铁厂','5#高炉','电机电流','70','A',8,NULL,'4','300','RC-ZL-5#GL-005',NULL,0),('N1-2皮带上料小车单机除尘',NULL,'2','炼铁厂','5#高炉','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-5#GL-006',NULL,0),('N1-3皮带上料小车单机除尘',NULL,'2','炼铁厂','5#高炉','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-5#GL-007',NULL,0),('配料造球除尘',NULL,'2','球团厂','球团','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-QT-005',NULL,0),('配料造球除尘',NULL,'2','球团厂','球团','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-QT-005',NULL,0),('配料造球除尘',NULL,'2','球团厂','球团','电机电流','70','A',8,NULL,'4','300','RC-ZL-QT-005',NULL,0),('5#皮带布料小车单机除尘',NULL,'2','烧结厂','竖炉-石灰','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-SHSL-005',NULL,0),('新建转炉二次除尘',NULL,'2','炼钢厂','炼钢','除尘器进出口压差','10','Pa',8,NULL,'4','300','RC-ZL-LH-006',NULL,0),('新建转炉二次除尘',NULL,'2','炼钢厂','炼钢','电机电流反馈','70','A',8,NULL,'4','300','RC-ZL-LH-006',NULL,0),

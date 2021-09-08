@@ -35,7 +35,6 @@ public class CleanCarService {
             // new Date()为获取当前系统时间
             String importData = df.format(new Date());
             list.stream().forEach(l -> l.setImport_data(importData));
-
             cleanCarMapper.insertCleanCarList(list);
 
         } catch (Exception e) {
@@ -46,7 +45,5 @@ public class CleanCarService {
         long endtime = System.currentTimeMillis();
         long time = endtime - starttime;
         return "客户ID：" + customerId + "：本次环保车辆数据(t_import_cleancar_info)结果:" + error + ",维护条数：" + sum + ",耗时：" + time + "ms";
-
-
     }
 }

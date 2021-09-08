@@ -61,6 +61,9 @@ public class Middle {
     private String node_id;
 
 
+    @ExcelField(sort = 11, required = false)
+    private String remarkss;
+
     // CEMS 类别  1539730750575002
     private String facility_type_id;
 
@@ -78,4 +81,6 @@ public class Middle {
 
     //是否为opc采集 1 0
     private String is_opc;
+
+
 }

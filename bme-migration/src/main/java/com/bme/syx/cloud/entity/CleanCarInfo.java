@@ -30,6 +30,7 @@ public class CleanCarInfo {
     @ExcelField(sort = 7, required = false)
     private String device_name ;
 
+
     @ExcelField(sort = 8, required = false)
     private String remarks ;
 
