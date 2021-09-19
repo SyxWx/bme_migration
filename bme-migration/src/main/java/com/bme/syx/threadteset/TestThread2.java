@@ -36,13 +36,3 @@ public class TestThread2 extends Thread{
 }
 
 
-class WebDownloder{
-    public void  downloader(String url,String name){
-        try {
-            FileUtils.copyURLToFile(new URL(url),new File(name));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("IO异常，downloader方法异常");
-        }
-    }
-}

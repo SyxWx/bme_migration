@@ -2,9 +2,11 @@ package com.bme.syx.cloud.service;
 
 
 import com.bme.syx.cloud.dao.DeviceMapper;
+import com.bme.syx.cloud.entity.CountEntity;
 import com.bme.syx.cloud.entity.DeviceInfo;
 import com.bme.syx.common.Untils;
 import littlebee.excel.ExcelImport;
+import org.elasticsearch.common.recycler.Recycler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,4 +74,11 @@ public class DeviceInfoService {
         return "客户ID："+customerId+"：本次设备数据(t_import_device)结果:"+error+",维护条数："+sum+",耗时："+time+"ms";
 
     }
+
+
+
+
+
+
+
 }

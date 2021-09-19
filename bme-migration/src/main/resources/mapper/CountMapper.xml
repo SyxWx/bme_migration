@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bme.syx.cloud.dao.CountMapper">
+
+
+    <select id="selectCountByTypes" resultType="com.bme.syx.cloud.entity.CountEntity" >
+        select  customer_id as customerId,
+                count(0) as count
+         from  t_device
+        where primary_type_id in (#{types})
+        group by  customer_id  order by customer_id ;
+
+    </select>
+
+</mapper>

@@ -26,7 +26,9 @@ public class DeviceInfoController {
         String  result =  deviceInfoService.insertDeviceInfo(customerId);
         return result;
     }
-    
+
+
+
     
     /*
     *
