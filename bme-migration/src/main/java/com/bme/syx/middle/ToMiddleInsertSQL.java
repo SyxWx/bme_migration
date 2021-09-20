@@ -1,23 +1,23 @@
 package com.bme.syx.middle;
 
-import littlebee.excel.ExcelImport;
-import org.junit.Test;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ToMiddleInsertSQL {
 
+    /**
     @Test
     public void testToMiddleInserSQl() throws  Exception{
 
         List<Middle> list = new ArrayList<>();
         ExcelImport middleExcel = new ExcelImport(Middle.class,1,"D:\\BME\\middle模板.xlsx");
         list=middleExcel.getModelList(Middle.class);
-        /**
-         * StringBuffer  线程安全   慢
-         * StringBuilder 非线程安全 快
-         */
+
+        // * StringBuffer  线程安全   慢
+        // * StringBuilder 非线程安全 快
+
         StringBuilder sql   =  new StringBuilder();
         StringBuilder values   =  new StringBuilder();
         String value = "";
@@ -145,6 +145,7 @@ public class ToMiddleInsertSQL {
 
     }
 
+/**
     //返回类型 //取值类型  1一次  2最小值  3最大值  4平均值  5累计次数
     public String getTypeByRemark(String remark){
         if(remark!=null && !remark.isEmpty()){
@@ -180,8 +181,5 @@ public class ToMiddleInsertSQL {
         }
         return null;
     }
+*/
 
-}
-
-
-// insert data_types (  facility_title,facility_type_id,facility_category,plant_title,  process_title,title,category_id,  unit,status,remark,type,period,device_no,node_id, is_opc )  values ('230m2混料塑烧板除尘',NULL,'2','烧结厂','230烧结','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-230SJ-005',NULL,0),('230m2混料塑烧板除尘',NULL,'2','烧结厂','230烧结','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-230SJ-005',NULL,0),('230m2混料塑烧板除尘',NULL,'2','烧结厂','230烧结','电机电流','70','A',8,NULL,'4','300','RC-ZL-230SJ-005',NULL,0),('230m2梭式布料塑烧板除尘',NULL,'2','烧结厂','230烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-230SJ-006',NULL,0),('原1皮带布料车单机除尘',NULL,'2','烧结厂','230烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-230SJ-007',NULL,0),('原2皮带布料车单机除尘',NULL,'2','烧结厂','230烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-230SJ-008',NULL,0),('265m2混料塑烧板除尘',NULL,'2','烧结厂','265烧结','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-265SJ-007',NULL,0),('265m2混料塑烧板除尘',NULL,'2','烧结厂','265烧结','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-265SJ-007',NULL,0),('265m2混料塑烧板除尘',NULL,'2','烧结厂','265烧结','电机电流','70','A',8,NULL,'4','300','RC-ZL-265SJ-007',NULL,0),('265m2梭式布料塑烧板除尘',NULL,'2','烧结厂','265烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-265SJ-008',NULL,0),('265m2机尾、成品除尘',NULL,'2','烧结厂','265烧结','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-265SJ-009',NULL,0),('265m2机尾、成品除尘',NULL,'2','烧结厂','265烧结','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-265SJ-009',NULL,0),('265m2机尾、成品除尘',NULL,'2','烧结厂','265烧结','电机电流','70','A',8,NULL,'4','300','RC-ZL-265SJ-009',NULL,0),('成4皮带布料车单机除尘',NULL,'2','烧结厂','265烧结','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-265SJ-010',NULL,0),('5#高炉喷煤除尘',NULL,'2','炼铁厂','5#高炉','箱体总差压','10','Pa',8,NULL,'4','300','RC-ZL-5#GL-005',NULL,0),('5#高炉喷煤除尘',NULL,'2','炼铁厂','5#高炉','变频频率','6','Hz',8,NULL,'4','300','RC-ZL-5#GL-005',NULL,0),('5#高炉喷煤除尘',NULL,'2','炼铁厂','5#高炉','电机电流','70','A',8,NULL,'4','300','RC-ZL-5#GL-005',NULL,0),('N1-2皮带上料小车单机除尘',NULL,'2','炼铁厂','5#高炉','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-5#GL-006',NULL,0),('N1-3皮带上料小车单机除尘',NULL,'2','炼铁厂','5#高炉','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-5#GL-007',NULL,0),('配料造球除尘',NULL,'2','球团厂','球团','除尘器差压','10','Pa',8,NULL,'4','300','RC-ZL-QT-005',NULL,0),('配料造球除尘',NULL,'2','球团厂','球团','电机频率','6','Hz',8,NULL,'4','300','RC-ZL-QT-005',NULL,0),('配料造球除尘',NULL,'2','球团厂','球团','电机电流','70','A',8,NULL,'4','300','RC-ZL-QT-005',NULL,0),('5#皮带布料小车单机除尘',NULL,'2','烧结厂','竖炉-石灰','启停信号','1',NULL,8,NULL,'4','300','RC-ZL-SHSL-005',NULL,0),('新建转炉二次除尘',NULL,'2','炼钢厂','炼钢','除尘器进出口压差','10','Pa',8,NULL,'4','300','RC-ZL-LH-006',NULL,0),('新建转炉二次除尘',NULL,'2','炼钢厂','炼钢','电机电流反馈','70','A',8,NULL,'4','300','RC-ZL-LH-006',NULL,0),

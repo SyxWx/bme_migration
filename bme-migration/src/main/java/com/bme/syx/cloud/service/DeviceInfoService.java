@@ -2,7 +2,6 @@ package com.bme.syx.cloud.service;
 
 
 import com.bme.syx.cloud.dao.DeviceMapper;
-import com.bme.syx.cloud.entity.CountEntity;
 import com.bme.syx.cloud.entity.DeviceInfo;
 import com.bme.syx.common.Untils;
 import littlebee.excel.ExcelImport;

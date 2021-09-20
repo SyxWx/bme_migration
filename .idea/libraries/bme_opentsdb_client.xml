@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bme-opentsdb-client">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bme-migration/libs/bme-opentsdb-client.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

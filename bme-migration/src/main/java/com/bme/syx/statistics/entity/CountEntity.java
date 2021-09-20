@@ -1,4 +1,4 @@
-package com.bme.syx.cloud.entity;
+package com.bme.syx.statistics.entity;
 
 public class CountEntity {
 
